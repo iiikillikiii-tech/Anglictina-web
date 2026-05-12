@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Angličtina s přehledem - demo web
 
-## Getting Started
+Next.js demo redesign pro `anglictinasprehledem.cz`.
 
-First, run the development server:
+## Stav
 
-```bash
+Aktuální verze: `0.2.0`
+
+Web je přestavěný z čistého Next starteru na single-page prezentační a prodejní demo:
+
+- hero sekce inspirovaná strukturou osobního webu Ali Abdaala,
+- český obsah podle služby Angličtina s přehledem,
+- sekce kurzů a cenových balíčků,
+- e-shop materiálů s filtrem kategorií,
+- jednoduchý frontend košík,
+- výhody online výuky,
+- pravidla spolupráce,
+- recenze,
+- o mně,
+- kontakt s telefonem, e-mailem, adresou a IČO.
+
+Poznámka: dlouhé texty z referenčního webu jsou přeformulované pro nové demo. JSON ani backend tady nejsou potřeba; jde o statickou Next stránku s klientskou interaktivitou košíku a filtrů.
+
+## Reference
+
+- Design směr: https://aliabdaal.com/
+- Obsahová reference: https://anglictinasprehledem.cz/
+
+Do nové verze nebyl převzat podezřelý casino/spam odstavec, který se na referenční homepage objevuje ve zdrojovém textu.
+
+## Lokální spuštění
+
+Kvůli lokálnímu Windows PATH problému je nejjistější přidat Node do PATH v aktuálním PowerShellu:
+
+```powershell
+$env:Path = "C:\Program Files\nodejs;$env:Path"
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Pak otevřít:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`http://localhost:3000`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Ověření
 
-## Learn More
+```powershell
+& "C:\Program Files\nodejs\node.exe" .\node_modules\typescript\bin\tsc --noEmit
+& "C:\Program Files\nodejs\node.exe" .\node_modules\eslint\bin\eslint.js .
+$env:Path = "C:\Program Files\nodejs;$env:Path"; & "C:\Program Files\nodejs\npm.cmd" run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## GitHub
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Cílový repozitář:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`https://github.com/iiikillikiii-tech/Anglictina-web`
