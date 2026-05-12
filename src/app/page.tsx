@@ -7,67 +7,99 @@ export default function Home() {
     <>
       <section className="page-hero home-hero">
         <div className="hero-copy">
-          <p className="eyebrow">Online výuka z pohodlí domova</p>
-          <h1>Ahoj, jsem Filip. Pomáhám studentům mít v angličtině přehled.</h1>
+          <p className="hello-line">Ahoj přátelé</p>
+          <h1>Jsem Filip. Pomáhám studentům konečně rozumět angličtině.</h1>
           <p>
-            Kurzy, materiály a individuální výuka pro studenty, kteří chtějí mluvit
-            přirozeněji, učit se efektivně a mít jasný plán bez zbytečného biflování.
+            Online lekce, PDF materiály a jasný systém pro studenty, kteří chtějí
+            mluvit přirozeněji, připravit se na zkoušky nebo si udělat pořádek v
+            gramatice.
           </p>
           <div className="hero-actions">
             <Link className="button button-primary" href="/kurzy">
               Vybrat kurz
             </Link>
-            <Link className="button button-secondary" href="/eshop">
-              Projít materiály
+            <Link className="button button-secondary" href="/kontakt">
+              Domluvit lekci
             </Link>
           </div>
-        </div>
-
-        <div className="portrait-panel" aria-label="Online lekce angličtiny">
-          <div>
-            <span>Skype výuka</span>
-            <strong>materiály + poznámky po lekci</strong>
+          <div className="featured-row" aria-label="Co je součástí výuky">
+            <span>Součástí výuky:</span>
+            <strong>Skype</strong>
+            <strong>PDF</strong>
+            <strong>Slovíčka</strong>
+            <strong>Poznámky</strong>
           </div>
         </div>
+
+        <aside className="subscribe-panel" aria-label="Domluva výuky">
+          <div className="subscribe-image" />
+          <div className="subscribe-copy">
+            <p className="panel-kicker">Domluvit výuku</p>
+            <h2>Začněte krátkou zprávou.</h2>
+            <p>
+              Napište, s čím potřebujete pomoct. Společně vybereme balíček,
+              úroveň a nejbližší vhodný termín.
+            </p>
+            <Link className="button button-primary" href="/kontakt">
+              Přejít na kontakt
+            </Link>
+            <div className="mini-proof">
+              <strong>3 kroky</strong>
+              <span>cíl, úroveň, vhodný kurz</span>
+            </div>
+          </div>
+        </aside>
       </section>
 
-      <section className="section">
-        <div className="section-heading section-heading-wide">
-          <p className="eyebrow">Jak vám pomůžu?</p>
-          <h2>Výuka, e-shop a praktické materiály jsou rozdělené do jasných částí.</h2>
+      <section className="section help-section">
+        <div className="ali-heading">
+          <p className="eyebrow">Jak vám můžu pomoct?</p>
+          <h2>
+            <span>Vyberte si</span>
+            <span>správnou cestu.</span>
+          </h2>
         </div>
         <div className="link-grid">
-          <Link className="feature-link accent-mint" href="/kurzy">
+          <Link className="feature-link" href="/kurzy">
             <span>01</span>
             <h3>Online kurzy</h3>
             <p>Balíčky podle tempa studenta, včetně PDF materiálů a poznámek po lekci.</p>
+            <strong>Vybrat kurz</strong>
           </Link>
-          <Link className="feature-link accent-violet" href="/eshop">
+          <Link className="feature-link" href="/eshop">
             <span>02</span>
             <h3>E-shop materiálů</h3>
             <p>Gramatika, slovíčka, zkoušky, cestování i business angličtina podle kategorií.</p>
+            <strong>Prohlédnout materiály</strong>
           </Link>
-          <Link className="feature-link accent-coral" href="/kontakt">
+          <Link className="feature-link" href="/o-mne">
             <span>03</span>
-            <h3>Domluva výuky</h3>
+            <h3>Individuální přístup</h3>
+            <p>Výuka stojí na srozumitelném vysvětlení, praxi a cílech konkrétního studenta.</p>
+            <strong>O výuce</strong>
+          </Link>
+          <Link className="feature-link" href="/kontakt">
+            <span>04</span>
+            <h3>Domluva lekce</h3>
             <p>Krátké sladění cíle, úrovně a nejvhodnějšího balíčku pro další práci.</p>
+            <strong>Kontaktovat</strong>
           </Link>
         </div>
       </section>
 
-      <section className="section split-section">
-        <div>
+      <section className="section spotlight-section">
+        <div className="spotlight-image" aria-label="Online studium angličtiny" />
+        <div className="spotlight-copy">
           <p className="eyebrow">Kurzy</p>
-          <h2>Vyberte si tempo výuky podle toho, kolik času chcete angličtině dát.</h2>
+          <h2>Výuka, která má rytmus i jasný další krok.</h2>
           <p>
-            Všechny lekce probíhají online. Student dostává digitální materiály,
-            slovíčka, opravené chyby a doporučení, jak pokračovat mezi hodinami.
+            Všechny lekce probíhají online. Student dostává materiály, slovíčka,
+            opravené chyby a doporučení, jak pokračovat mezi hodinami.
           </p>
           <Link className="button button-secondary" href="/kurzy">
             Všechny balíčky
           </Link>
         </div>
-        <div className="image-strip image-strip-study" aria-label="Studenti při online výuce" />
       </section>
 
       <section className="section">
@@ -78,33 +110,53 @@ export default function Home() {
         <CourseCards compact />
       </section>
 
-      <section className="section">
+      <section className="section creator-section">
+        <div className="creator-photo" aria-label="Lektor angličtiny" />
+        <div>
+          <p className="hello-line">Hey, jsem Filip Trubelík</p>
+          <h2>Angličtinu učím tak, aby dávala smysl v praxi.</h2>
+          <p>
+            Cílem není biflovat poučky. V lekcích pracujeme s tím, co student
+            reálně potřebuje: mluvení, porozumění, gramatika na příkladech,
+            slovní zásoba a opakování mezi hodinami.
+          </p>
+          <Link className="button button-secondary" href="/o-mne">
+            Přečíst příběh
+          </Link>
+        </div>
+      </section>
+
+      <section className="section resource-section">
         <div className="section-heading section-heading-wide">
-          <p className="eyebrow">E-shop</p>
-          <h2>Kategorie materiálů mají vlastní podstránky.</h2>
+          <p className="eyebrow">Materiály</p>
+          <h2>Populární kategorie v e-shopu.</h2>
         </div>
         <div className="category-card-grid">
           {productCategories.map((category) => (
             <Link className="category-card" href={`/eshop/${category.slug}`} key={category.slug}>
+              <span className="resource-thumb" />
               <strong>{category.label}</strong>
               <span>{category.description}</span>
+              <em>Zobrazit</em>
             </Link>
           ))}
         </div>
       </section>
 
       <section className="section review-section">
-        <div className="section-heading">
-          <p className="eyebrow">Recenze</p>
-          <h2>Výuka má být praktická, přirozená a použitelná.</h2>
-        </div>
-        <div className="review-grid">
-          {reviews.map((review) => (
-            <figure key={review.name} className="review-card">
-              <blockquote>{review.text}</blockquote>
-              <figcaption>{review.name}</figcaption>
-            </figure>
-          ))}
+        <div className="newsletter-band">
+          <div>
+            <p className="eyebrow">Recenze</p>
+            <h2>Výuka má být praktická, přirozená a použitelná.</h2>
+          </div>
+          <div className="review-grid">
+            {reviews.map((review) => (
+              <figure key={review.name} className="review-card">
+                <blockquote>{review.text}</blockquote>
+                <figcaption>{review.name}</figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
     </>
