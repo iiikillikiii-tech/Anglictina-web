@@ -81,8 +81,14 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <div className="site-shell">
         <header className="site-nav">
           <Link className="brand" href="/" aria-label="Angličtina s přehledem domů">
-            <span className="brand-mark">A</span>
-            <span>Angličtina s přehledem</span>
+            <span className="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 256 256" focusable="false">
+                <rect width="256" height="256" rx="72" />
+                <path d="M54 155C54 106.399 93.3989 67 142 67H202V105H142C114.386 105 92 127.386 92 155C92 182.614 114.386 205 142 205H159V243H142C93.3989 243 54 203.601 54 155Z" />
+                <path d="M111 41H154L214 214H171L160 178H102L91 214H49L111 41ZM112 143H149L131 85L112 143Z" />
+              </svg>
+            </span>
+            <span className="brand-text">Angličtina s přehledem</span>
           </Link>
 
           <nav className="nav-links" aria-label="Hlavní navigace">

@@ -5,6 +5,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Angličtina s přehledem",
   description: "Online kurzy angličtiny, výukové balíčky a materiály z pohodlí domova.",
+  icons: {
+    icon: "/logo-mark.svg",
+  },
 };
 
 export default function RootLayout({
