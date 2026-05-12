@@ -4,22 +4,34 @@ Next.js demo redesign pro `anglictinasprehledem.cz`.
 
 ## Stav
 
-Aktuální verze: `0.2.0`
+Aktuální verze: `0.3.0`
 
-Web je přestavěný z čistého Next starteru na single-page prezentační a prodejní demo:
+Web je přestavěný na vícestránkovou prezentaci a jednoduchý prodejní demo web:
 
-- hero sekce inspirovaná strukturou osobního webu Ali Abdaala,
-- český obsah podle služby Angličtina s přehledem,
-- sekce kurzů a cenových balíčků,
-- e-shop materiálů s filtrem kategorií,
-- jednoduchý frontend košík,
-- výhody online výuky,
-- pravidla spolupráce,
-- recenze,
-- o mně,
-- kontakt s telefonem, e-mailem, adresou a IČO.
+- domovská stránka ve stylu osobního vzdělávacího webu,
+- samostatná stránka kurzů a ceníku,
+- e-shop rozdělený do kategorií a podstránek,
+- sdílený frontend košík napříč stránkami,
+- stránka O mně,
+- stránka Kontakt,
+- stránka Pravidla spolupráce,
+- český obsah podle služby Angličtina s přehledem.
 
-Poznámka: dlouhé texty z referenčního webu jsou přeformulované pro nové demo. JSON ani backend tady nejsou potřeba; jde o statickou Next stránku s klientskou interaktivitou košíku a filtrů.
+Poznámka: dlouhé texty z referenčního webu jsou přeformulované pro nové demo. JSON ani backend tady nejsou potřeba; jde o statickou Next aplikaci s klientskou interaktivitou košíku.
+
+## Routy
+
+- `/`
+- `/kurzy`
+- `/eshop`
+- `/eshop/gramatika-cviceni`
+- `/eshop/slovicka`
+- `/eshop/maturita-cambridge`
+- `/eshop/cestovani`
+- `/eshop/business`
+- `/o-mne`
+- `/kontakt`
+- `/pravidla`
 
 ## Reference
 
