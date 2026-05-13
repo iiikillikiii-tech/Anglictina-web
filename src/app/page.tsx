@@ -134,13 +134,7 @@ export default function Home() {
         <div className="category-card-grid">
           {productCategories.map((category, index) => (
             <Link className="category-card" href={`/eshop/${category.slug}`} key={category.slug}>
-              <span className="resource-thumb" aria-hidden="true">
-                <span className="resource-sheet">
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </span>
+              <span className={`resource-thumb resource-thumb-${category.slug}`} aria-hidden="true">
                 <span className="resource-tab">{String(index + 1).padStart(2, "0")}</span>
               </span>
               <strong>{category.label}</strong>

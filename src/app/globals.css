@@ -756,91 +756,58 @@ p {
 
 .resource-thumb {
   position: relative;
-  display: grid;
   min-height: 124px;
-  place-items: center;
   overflow: hidden;
   border-radius: 8px;
   border: 1px solid rgba(17, 17, 17, 0.12);
   background:
-    radial-gradient(circle at 20% 16%, rgba(255, 255, 255, 0.72), transparent 34%),
+    linear-gradient(180deg, rgba(17, 17, 17, 0.05), rgba(17, 17, 17, 0.28)),
     var(--green);
+  background-position: center;
+  background-size: cover;
 }
 
-.category-card:nth-child(2) .resource-thumb {
+.resource-thumb-gramatika-cviceni,
+.product-visual-gramatika-cviceni {
+  background-image:
+    linear-gradient(180deg, rgba(17, 17, 17, 0.04), rgba(17, 17, 17, 0.28)),
+    url("https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=900&q=80");
+}
+
+.resource-thumb-slovicka,
+.product-visual-slovicka {
   background:
-    radial-gradient(circle at 20% 16%, rgba(255, 255, 255, 0.72), transparent 34%),
-    var(--yellow);
+    linear-gradient(180deg, rgba(17, 17, 17, 0.04), rgba(17, 17, 17, 0.28)),
+    url("https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=900&q=80");
+  background-position: center;
+  background-size: cover;
 }
 
-.category-card:nth-child(3) .resource-thumb {
+.resource-thumb-maturita-cambridge,
+.product-visual-maturita-cambridge {
   background:
-    radial-gradient(circle at 20% 16%, rgba(255, 255, 255, 0.72), transparent 34%),
-    var(--pink);
+    linear-gradient(180deg, rgba(17, 17, 17, 0.04), rgba(17, 17, 17, 0.3)),
+    url("https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=900&q=80");
+  background-position: center;
+  background-size: cover;
 }
 
-.category-card:nth-child(4) .resource-thumb {
+.resource-thumb-cestovani,
+.product-visual-cestovani {
   background:
-    radial-gradient(circle at 20% 16%, rgba(255, 255, 255, 0.72), transparent 34%),
-    var(--blue);
+    linear-gradient(180deg, rgba(17, 17, 17, 0.04), rgba(17, 17, 17, 0.3)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80");
+  background-position: center;
+  background-size: cover;
 }
 
-.category-card:nth-child(5) .resource-thumb {
+.resource-thumb-business,
+.product-visual-business {
   background:
-    radial-gradient(circle at 20% 16%, rgba(255, 255, 255, 0.72), transparent 34%),
-    var(--lavender);
-}
-
-.resource-sheet {
-  position: relative;
-  display: grid;
-  width: 72%;
-  max-width: 120px;
-  min-height: 94px;
-  gap: 8px;
-  align-content: start;
-  border: 1px solid rgba(17, 17, 17, 0.15);
-  border-radius: 7px;
-  background: #fffdf8;
-  padding: 15px 14px;
-  box-shadow: 0 14px 28px rgba(45, 35, 24, 0.12);
-  transform: rotate(-3deg);
-}
-
-.resource-sheet::before {
-  content: "";
-  position: absolute;
-  top: 11px;
-  right: 11px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--ink);
-}
-
-.resource-sheet span {
-  display: block;
-  height: 7px;
-  border-radius: 999px;
-  background: rgba(17, 17, 17, 0.12);
-}
-
-.resource-sheet span:first-child {
-  width: 52%;
-  background: var(--ink);
-}
-
-.resource-sheet span:nth-child(2) {
-  width: 82%;
-  margin-top: 13px;
-}
-
-.resource-sheet span:nth-child(3) {
-  width: 68%;
-}
-
-.resource-sheet span:nth-child(4) {
-  width: 90%;
+    linear-gradient(180deg, rgba(17, 17, 17, 0.04), rgba(17, 17, 17, 0.28)),
+    url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80");
+  background-position: center;
+  background-size: cover;
 }
 
 .resource-tab {
@@ -918,95 +885,13 @@ p {
 }
 
 .product-preview {
-  display: grid;
   min-height: 128px;
-  place-items: center;
   margin-bottom: 18px;
   overflow: hidden;
   border: 1px solid rgba(17, 17, 17, 0.12);
   border-radius: 8px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.66), rgba(17, 17, 17, 0.06)),
-    var(--soft);
-}
-
-.product-card:nth-child(5n + 1) .product-preview {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.66), rgba(17, 17, 17, 0.06)),
-    var(--green);
-}
-
-.product-card:nth-child(5n + 2) .product-preview {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.66), rgba(17, 17, 17, 0.06)),
-    var(--yellow);
-}
-
-.product-card:nth-child(5n + 3) .product-preview {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.66), rgba(17, 17, 17, 0.06)),
-    var(--pink);
-}
-
-.product-card:nth-child(5n + 4) .product-preview {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.66), rgba(17, 17, 17, 0.06)),
-    var(--blue);
-}
-
-.product-card:nth-child(5n + 5) .product-preview {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.66), rgba(17, 17, 17, 0.06)),
-    var(--lavender);
-}
-
-.product-sheet {
-  display: grid;
-  width: min(150px, 74%);
-  min-height: 98px;
-  gap: 8px;
-  align-content: start;
-  border: 1px solid rgba(17, 17, 17, 0.16);
-  border-radius: 8px;
-  background: #fffdf8;
-  padding: 14px;
-  box-shadow: 0 14px 28px rgba(45, 35, 24, 0.12);
-}
-
-.product-sheet-kicker {
-  display: inline-flex;
-  width: fit-content;
-  margin: 0 0 6px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--ink);
-  padding: 5px 8px;
-  color: #fffaf2;
-  font-size: 11px;
-  font-weight: 900;
-  line-height: 1;
-}
-
-.product-sheet > span:not(.product-sheet-kicker) {
-  display: block;
-  height: 7px;
-  margin: 0;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(17, 17, 17, 0.12);
-  padding: 0;
-}
-
-.product-sheet > span:nth-child(2) {
-  width: 86%;
-}
-
-.product-sheet > span:nth-child(3) {
-  width: 68%;
-}
-
-.product-sheet > span:nth-child(4) {
-  width: 78%;
+  background-position: center;
+  background-size: cover;
 }
 
 .review-section {

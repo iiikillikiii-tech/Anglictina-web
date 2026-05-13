@@ -30,14 +30,10 @@ export function ProductGrid({ activeCategorySlug }: { activeCategorySlug?: strin
       <div className="product-grid">
         {visibleProducts.map((product) => (
           <article key={product.slug} className={`product-card accent-${product.accent}`}>
-            <div className="product-preview" aria-hidden="true">
-              <span className="product-sheet">
-                <span className="product-sheet-kicker">PDF</span>
-                <span />
-                <span />
-                <span />
-              </span>
-            </div>
+            <div
+              className={`product-preview product-visual-${product.categorySlug}`}
+              aria-hidden="true"
+            />
             <p className="card-eyebrow">{product.category}</p>
             <h3>{product.title}</h3>
             <span>{product.status}</span>
