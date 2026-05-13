@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { SiteChrome } from "./components/SiteChrome";
 import "./globals.css";
 
+const basePath = process.env.GITHUB_PAGES === "true" ? "/Anglictina-web" : "";
+
 export const metadata: Metadata = {
   title: "Angličtina s přehledem",
   description: "Online kurzy angličtiny, výukové balíčky a materiály z pohodlí domova.",
   icons: {
-    icon: "/logo-mark.svg",
+    icon: `${basePath}/logo-mark.svg`,
   },
 };
 
