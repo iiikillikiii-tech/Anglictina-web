@@ -132,9 +132,17 @@ export default function Home() {
           <h2>Populární kategorie v e-shopu.</h2>
         </div>
         <div className="category-card-grid">
-          {productCategories.map((category) => (
+          {productCategories.map((category, index) => (
             <Link className="category-card" href={`/eshop/${category.slug}`} key={category.slug}>
-              <span className="resource-thumb" />
+              <span className="resource-thumb" aria-hidden="true">
+                <span className="resource-sheet">
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </span>
+                <span className="resource-tab">{String(index + 1).padStart(2, "0")}</span>
+              </span>
               <strong>{category.label}</strong>
               <span>{category.description}</span>
               <em>Zobrazit</em>

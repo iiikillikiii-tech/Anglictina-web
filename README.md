@@ -4,7 +4,7 @@ Next.js demo redesign pro `anglictinasprehledem.cz`.
 
 ## Stav
 
-Aktuální verze: `0.5.0`
+Aktuální verze: `0.6.0`
 
 Web je přestavěný na vícestránkovou prezentaci a jednoduchý prodejní demo web:
 
@@ -12,6 +12,7 @@ Web je přestavěný na vícestránkovou prezentaci a jednoduchý prodejní demo
 - výraznější Ali Abdaal inspirovaný layout: osobní hero, CTA panel, help cards, creator story a resource cards,
 - moderní SVG logo v `public/logo-anglictina.svg` a samostatný symbol v `public/logo-mark.svg`,
 - kompaktnější typografie a sjednocené formátování napříč stránkami,
+- upravené karty materiálů a e-shopu s náhledem PDF/pracovního listu místo prázdných barevných bloků,
 - samostatná stránka kurzů a ceníku,
 - e-shop rozdělený do kategorií a podstránek,
 - sdílený frontend košík napříč stránkami,
