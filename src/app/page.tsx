@@ -8,7 +8,11 @@ import {
   FileText,
   GraduationCap,
   Headphones,
+  Layers3,
+  ListChecks,
   MessageCircle,
+  ShoppingBag,
+  Target,
   Video,
 } from "lucide-react";
 import { CourseCards } from "./components/CourseCards";
@@ -27,6 +31,13 @@ export default function Home() {
             studenty, kteří chtějí mluvit přirozeněji, připravit se na zkoušky
             nebo si konečně srovnat gramatiku.
           </p>
+          <div className="hero-chip-row" aria-label="Oblasti výuky">
+            <span>Maturita</span>
+            <span>Cambridge</span>
+            <span>Konverzace</span>
+            <span>Gramatika</span>
+            <span>Business</span>
+          </div>
           <div className="hero-actions">
             <Link className="button button-primary" href="/kurzy">
               Vybrat kurz
@@ -37,17 +48,33 @@ export default function Home() {
               Domluvit lekci
             </Link>
           </div>
+          <div className="hero-command" aria-label="Struktura spolupráce">
+            <span>student-plan</span>
+            <strong>cíl · úroveň · kurz · materiály</strong>
+          </div>
           <div className="hero-metrics" aria-label="Výhody výuky">
             <div>
               <strong>1:1</strong>
               <span>individuální tempo</span>
             </div>
             <div>
+              <strong>6</strong>
+              <span>kurzových balíčků</span>
+            </div>
+            <div>
               <strong>PDF</strong>
               <span>materiály po lekci</span>
             </div>
             <div>
-              <strong>3 kroky</strong>
+              <strong>6</strong>
+              <span>kategorií e-shopu</span>
+            </div>
+            <div>
+              <strong>30 min</strong>
+              <span>úvodní sladění</span>
+            </div>
+            <div>
+              <strong>3</strong>
               <span>cíl, úroveň, plán</span>
             </div>
           </div>
@@ -146,6 +173,33 @@ export default function Home() {
         </div>
       </RevealSection>
 
+      <RevealSection className="section process-section">
+        <div className="section-heading section-heading-wide">
+          <p className="eyebrow">Učební systém</p>
+          <h2>Profesionální proces místo nahodilých lekcí.</h2>
+        </div>
+        <div className="process-grid">
+          <article>
+            <Target aria-hidden="true" size={22} strokeWidth={2.4} />
+            <span>01</span>
+            <h3>Diagnostika cíle</h3>
+            <p>Nejdřív se sladí úroveň, časové možnosti a důvod, proč angličtinu řešit.</p>
+          </article>
+          <article>
+            <CalendarCheck aria-hidden="true" size={22} strokeWidth={2.4} />
+            <span>02</span>
+            <h3>Pravidelný režim</h3>
+            <p>Student má jasný rytmus lekcí, materiálů a opakování mezi hodinami.</p>
+          </article>
+          <article>
+            <ListChecks aria-hidden="true" size={22} strokeWidth={2.4} />
+            <span>03</span>
+            <h3>Viditelný posun</h3>
+            <p>Po každé lekci zůstává konkrétní výstup: chyby, slovíčka a další úkol.</p>
+          </article>
+        </div>
+      </RevealSection>
+
       <RevealSection className="section help-section">
         <div className="ali-heading">
           <p className="eyebrow">Jak vám můžu pomoct?</p>
@@ -156,7 +210,9 @@ export default function Home() {
         </div>
         <div className="link-grid">
           <Link className="feature-link" href="/kurzy">
-            <span>01</span>
+            <span>
+              <Layers3 aria-hidden="true" size={18} />
+            </span>
             <h3>Online kurzy</h3>
             <p>Balíčky podle tempa studenta, včetně PDF materiálů a poznámek po lekci.</p>
             <strong>
@@ -165,7 +221,9 @@ export default function Home() {
             </strong>
           </Link>
           <Link className="feature-link" href="/eshop">
-            <span>02</span>
+            <span>
+              <ShoppingBag aria-hidden="true" size={18} />
+            </span>
             <h3>E-shop materiálů</h3>
             <p>Gramatika, slovíčka, zkoušky, cestování i business angličtina podle kategorií.</p>
             <strong>
@@ -174,7 +232,9 @@ export default function Home() {
             </strong>
           </Link>
           <Link className="feature-link" href="/o-mne">
-            <span>03</span>
+            <span>
+              <GraduationCap aria-hidden="true" size={18} />
+            </span>
             <h3>Individuální přístup</h3>
             <p>Výuka stojí na srozumitelném vysvětlení, praxi a cílech konkrétního studenta.</p>
             <strong>
@@ -183,7 +243,9 @@ export default function Home() {
             </strong>
           </Link>
           <Link className="feature-link" href="/kontakt">
-            <span>04</span>
+            <span>
+              <MessageCircle aria-hidden="true" size={18} />
+            </span>
             <h3>Domluva lekce</h3>
             <p>Krátké sladění cíle, úrovně a nejvhodnějšího balíčku pro další práci.</p>
             <strong>
