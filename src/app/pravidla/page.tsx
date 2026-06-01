@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { RevealSection } from "../components/RevealSection";
 import { rules } from "../data";
 
 export default function RulesPage() {
@@ -19,7 +20,7 @@ export default function RulesPage() {
         </div>
       </section>
 
-      <section className="section rules-preview">
+      <RevealSection className="section rules-preview">
         <div className="rule-grid rule-grid-large">
           {rules.map((rule, index) => (
             <article key={rule.title}>
@@ -29,9 +30,9 @@ export default function RulesPage() {
             </article>
           ))}
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section cta-band">
+      <RevealSection className="section cta-band">
         <p className="eyebrow">Další krok</p>
         <h2>Vyberte kurz a domluvte si první termín.</h2>
         <div className="hero-actions">
@@ -42,7 +43,7 @@ export default function RulesPage() {
             Kontakt
           </Link>
         </div>
-      </section>
+      </RevealSection>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { ProductGrid } from "../../components/ProductGrid";
+import { RevealSection } from "../../components/RevealSection";
 import { productCategories } from "../../data";
 
 export function generateStaticParams() {
@@ -34,9 +35,9 @@ export default async function ShopCategoryPage({
         </div>
       </section>
 
-      <section className="section shop-section">
+      <RevealSection className="section shop-section">
         <ProductGrid activeCategorySlug={category.slug} />
-      </section>
+      </RevealSection>
     </>
   );
 }

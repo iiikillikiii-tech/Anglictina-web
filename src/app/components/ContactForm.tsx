@@ -1,0 +1,100 @@
+"use client";
+
+import { Mail, Send } from "lucide-react";
+import { useMemo, useState } from "react";
+import { contactInfo } from "../data";
+import { useCart } from "./SiteChrome";
+
+const serviceOptions = [
+  "Online kurz 3x týdně",
+  "Online kurz 2x týdně",
+  "Malý / střední / velký balíček",
+  "Maturita nebo Cambridge",
+  "PDF materiály z e-shopu",
+  "Nejsem si jistý/á",
+];
+
+export function ContactForm() {
+  const { items } = useCart();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [service, setService] = useState(serviceOptions[0]);
+  const [message, setMessage] = useState("");
+
+  const cartSummary = useMemo(() => {
+    if (!items.length) {
+      return "Košík je prázdný.";
+    }
+
+    return items
+      .map((item) => `${item.quantity}x ${item.title}${item.price ? ` (${item.price})` : ""}`)
+      .join("\n");
+  }, [items]);
+
+  const submitForm = () => {
+    const subject = encodeURIComponent(`Poptávka: ${service}`);
+    const body = encodeURIComponent(
+      [
+        `Jméno: ${name || "-"}`,
+        `E-mail: ${email || "-"}`,
+        `Služba: ${service}`,
+        "",
+        "Košík:",
+        cartSummary,
+        "",
+        "Zpráva:",
+        message || "-",
+      ].join("\n"),
+    );
+
+    window.location.href = `${contactInfo.emailHref}?subject=${subject}&body=${body}`;
+  };
+
+  return (
+    <form
+      className="contact-form"
+      onSubmit={(event) => {
+        event.preventDefault();
+        submitForm();
+      }}
+    >
+      <div className="form-row">
+        <label>
+          <span>Jméno</span>
+          <input value={name} onChange={(event) => setName(event.target.value)} />
+        </label>
+        <label>
+          <span>E-mail</span>
+          <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} />
+        </label>
+      </div>
+      <label>
+        <span>Co potřebujete?</span>
+        <select value={service} onChange={(event) => setService(event.target.value)}>
+          {serviceOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        <span>Zpráva</span>
+        <textarea
+          rows={5}
+          value={message}
+          onChange={(event) => setMessage(event.target.value)}
+          placeholder="Napište úroveň, cíl, časové možnosti nebo dotaz k materiálům."
+        />
+      </label>
+      <div className="form-cart-summary">
+        <Mail aria-hidden="true" size={17} strokeWidth={2.4} />
+        <pre>{cartSummary}</pre>
+      </div>
+      <button className="button button-primary" type="submit">
+        <Send aria-hidden="true" size={18} strokeWidth={2.4} />
+        Odeslat e-mailem
+      </button>
+    </form>
+  );
+}

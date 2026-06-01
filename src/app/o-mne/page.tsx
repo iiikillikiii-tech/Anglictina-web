@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { RevealSection } from "../components/RevealSection";
+import { aboutStory } from "../data";
 
 export default function AboutPage() {
   return (
@@ -7,24 +9,17 @@ export default function AboutPage() {
         <div className="hero-copy">
           <p className="eyebrow">O mně</p>
           <h1>Jsem Filip a angličtinu učím tak, aby dávala smysl v praxi.</h1>
-          <p>
-            Lekce vedu individuálně. Cílem není biflovat poučky, ale najít způsob,
-            jak jazyk přirozeně vstřebat a používat ho v běžných situacích.
-          </p>
+          <p>{aboutStory.intro}</p>
         </div>
         <div className="portrait-panel portrait-panel-small" aria-label="Lektor angličtiny" />
       </section>
 
-      <section className="section story-grid">
+      <RevealSection className="section story-grid">
         <article>
           <p className="eyebrow">Přístup</p>
           <h2>Výuka vychází z reálné angličtiny a konkrétních potřeb studenta.</h2>
-          <p>
-            Angličtině se věnuji dlouhodobě a učím studenty různých věkových kategorií.
-            Vycházím z osobní zkušenosti: klasická školní výuka nemusí sedět každému,
-            proto dávám důraz na srozumitelné vysvětlení, konverzaci a materiály,
-            které student opravdu použije.
-          </p>
+          <p>{aboutStory.background}</p>
+          <p>{aboutStory.approach}</p>
         </article>
         <article className="story-card accent-amber">
           <h3>Co v lekcích řešíme</h3>
@@ -35,9 +30,30 @@ export default function AboutPage() {
             <li>materiály a poznámky pro domácí práci.</li>
           </ul>
         </article>
-      </section>
+      </RevealSection>
 
-      <section className="section split-section">
+      <RevealSection className="section profile-section">
+        <div className="section-heading section-heading-wide">
+          <p className="eyebrow">Kdo jsem?</p>
+          <h2>Učím studenty od školní přípravy až po praktickou dospělou komunikaci.</h2>
+        </div>
+        <div className="profile-facts">
+          <article>
+            <strong>5 let</strong>
+            <span>praxe s výukou angličtiny</span>
+          </article>
+          <article>
+            <strong>15-100</strong>
+            <span>věkové rozpětí studentů</span>
+          </article>
+          <article>
+            <strong>online</strong>
+            <span>výuka přes Skype z pohodlí domova</span>
+          </article>
+        </div>
+      </RevealSection>
+
+      <RevealSection className="section split-section">
         <div className="image-strip image-strip-teacher" aria-label="Individuální výuka angličtiny" />
         <div>
           <p className="eyebrow">Online forma</p>
@@ -50,7 +66,7 @@ export default function AboutPage() {
             Domluvit lekci
           </Link>
         </div>
-      </section>
+      </RevealSection>
     </>
   );
 }

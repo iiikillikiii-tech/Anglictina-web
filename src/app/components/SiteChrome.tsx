@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ChevronDown, Menu, ShoppingBag, Sparkles, Trash2, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   createContext,
   useContext,
@@ -13,13 +15,34 @@ import {
 import { navItems, productCategories } from "../data";
 
 type CartContextValue = {
-  items: string[];
-  addItem: (title: string) => void;
+  items: CartItem[];
+  addItem: (item: CartItemInput) => void;
+  removeItem: (id: string) => void;
+  openCart: () => void;
   clearCart: () => void;
+};
+
+export type CartItemInput = {
+  id: string;
+  title: string;
+  price?: string;
+  priceCzk?: number;
+  category?: string;
+};
+
+type CartItem = CartItemInput & {
+  quantity: number;
 };
 
 const CART_KEY = "anglictina-cart-v1";
 const CartContext = createContext<CartContextValue | null>(null);
+
+const formatCzk = (value: number) =>
+  new Intl.NumberFormat("cs-CZ", {
+    maximumFractionDigits: 0,
+    style: "currency",
+    currency: "CZK",
+  }).format(value);
 
 export function useCart() {
   const context = useContext(CartContext);
@@ -33,7 +56,9 @@ export function useCart() {
 
 export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const [items, setItems] = useState<string[]>(() => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [items, setItems] = useState<CartItem[]>(() => {
     if (typeof window === "undefined") {
       return [];
     }
@@ -43,7 +68,46 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       try {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed)) {
-          return parsed.filter((item) => typeof item === "string");
+          return parsed
+            .map((item): CartItem | null => {
+              if (typeof item === "string") {
+                return {
+                  id: item,
+                  title: item,
+                  quantity: 1,
+                };
+              }
+
+              if (
+                item &&
+                typeof item === "object" &&
+                "id" in item &&
+                "title" in item &&
+                typeof item.id === "string" &&
+                typeof item.title === "string"
+              ) {
+                return {
+                  id: item.id,
+                  title: item.title,
+                  category:
+                    "category" in item && typeof item.category === "string"
+                      ? item.category
+                      : undefined,
+                  price: "price" in item && typeof item.price === "string" ? item.price : undefined,
+                  priceCzk:
+                    "priceCzk" in item && typeof item.priceCzk === "number"
+                      ? item.priceCzk
+                      : undefined,
+                  quantity:
+                    "quantity" in item && typeof item.quantity === "number"
+                      ? Math.max(1, item.quantity)
+                      : 1,
+                };
+              }
+
+              return null;
+            })
+            .filter((item): item is CartItem => Boolean(item));
         }
       } catch {
         window.localStorage.removeItem(CART_KEY);
@@ -62,11 +126,37 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const value = useMemo<CartContextValue>(
     () => ({
       items,
-      addItem: (title) => setItems((current) => [...current, title]),
+      addItem: (item) => {
+        setItems((current) => {
+          const existing = current.find((cartItem) => cartItem.id === item.id);
+
+          if (existing) {
+            return current.map((cartItem) =>
+              cartItem.id === item.id
+                ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                : cartItem,
+            );
+          }
+
+          return [...current, { ...item, quantity: 1 }];
+        });
+        setIsCartOpen(true);
+      },
+      removeItem: (id) => {
+        setItems((current) =>
+          current
+            .map((item) => (item.id === id ? { ...item, quantity: item.quantity - 1 } : item))
+            .filter((item) => item.quantity > 0),
+        );
+      },
+      openCart: () => setIsCartOpen(true),
       clearCart: () => setItems([]),
     }),
     [items],
   );
+
+  const cartCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  const subtotal = items.reduce((sum, item) => sum + (item.priceCzk ?? 0) * item.quantity, 0);
 
   const isActive = (href: string) => {
     if (href === "/") {
@@ -91,7 +181,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             <span className="brand-text">Angličtina s přehledem</span>
           </Link>
 
-          <nav className="nav-links" aria-label="Hlavní navigace">
+          <nav className="nav-links nav-links-desktop" aria-label="Hlavní navigace">
             {navItems.map((item) =>
               item.href === "/eshop" ? (
                 <div className="nav-dropdown" key={item.href}>
@@ -100,6 +190,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                     href={item.href}
                   >
                     {item.label}
+                    <ChevronDown aria-hidden="true" size={15} strokeWidth={2.4} />
                   </Link>
                   <div className="nav-dropdown-menu" aria-label="Kategorie e-shopu">
                     {productCategories.map((category) => (
@@ -121,38 +212,157 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             )}
           </nav>
 
-          <a className="cart-pill" href="#kosik" aria-label={`Košík: ${items.length} položek`}>
-            Košík <strong>{items.length}</strong>
-          </a>
+          <div className="nav-actions">
+            <button
+              className="cart-pill"
+              type="button"
+              aria-label={`Otevřít košík: ${cartCount} položek`}
+              onClick={() => setIsCartOpen(true)}
+            >
+              <ShoppingBag aria-hidden="true" size={17} strokeWidth={2.4} />
+              <span>Košík</span>
+              <strong>{cartCount}</strong>
+            </button>
+            <button
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? "Zavřít menu" : "Otevřít menu"}
+              className="menu-toggle"
+              type="button"
+              onClick={() => setIsMenuOpen((current) => !current)}
+            >
+              {isMenuOpen ? <X aria-hidden="true" size={20} /> : <Menu aria-hidden="true" size={20} />}
+            </button>
+          </div>
+
+          <AnimatePresence>
+            {isMenuOpen ? (
+              <motion.nav
+                animate={{ opacity: 1, y: 0 }}
+                aria-label="Mobilní navigace"
+                className="mobile-menu"
+                exit={{ opacity: 0, y: -8 }}
+                initial={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.18 }}
+              >
+                {navItems.map((item) => (
+                  <div className="mobile-menu-group" key={item.href}>
+                    <Link
+                      className={`mobile-menu-link ${isActive(item.href) ? "is-active" : ""}`}
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                    {item.href === "/eshop" ? (
+                      <div className="mobile-submenu">
+                        {productCategories.map((category) => (
+                          <Link
+                            href={`/eshop/${category.slug}`}
+                            key={category.slug}
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {category.label}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                ))}
+              </motion.nav>
+            ) : null}
+          </AnimatePresence>
         </header>
+
+        <div className="site-announcement">
+          <Sparkles aria-hidden="true" size={16} />
+          <span>Online lekce, PDF materiály a přehledný plán učení bez zbytečné teorie.</span>
+        </div>
+
+        <nav className="shop-shortcuts" aria-label="Rychlé odkazy e-shopu">
+          <Link href="/eshop">E-shop</Link>
+          {productCategories.map((category) => (
+            <Link key={category.slug} href={`/eshop/${category.slug}`}>
+              {category.label}
+            </Link>
+          ))}
+        </nav>
 
         <main className="site-main">{children}</main>
 
-        <aside className="floating-cart" id="kosik" aria-live="polite">
-          <div className="floating-cart-top">
-            <span>Košík</span>
-            <strong>{items.length} položek</strong>
-          </div>
-          {items.length ? (
-            <>
-              <ul>
-                {items.slice(-3).map((item, index) => (
-                  <li key={`${item}-${index}`}>{item}</li>
-                ))}
-              </ul>
-              <div className="floating-cart-actions">
-                <Link className="button button-small button-primary" href="/kontakt">
-                  Dokončit domluvou
-                </Link>
-                <button className="text-button" type="button" onClick={value.clearCart}>
-                  Vyprázdnit
-                </button>
-              </div>
-            </>
-          ) : (
-            <p>Košík je zatím prázdný.</p>
-          )}
-        </aside>
+        <AnimatePresence>
+          {isCartOpen ? (
+            <motion.aside
+              animate={{ opacity: 1, x: 0 }}
+              className="floating-cart"
+              id="kosik"
+              initial={{ opacity: 0, x: 28 }}
+              exit={{ opacity: 0, x: 28 }}
+              transition={{ duration: 0.24, ease: "easeOut" }}
+              aria-live="polite"
+              role="dialog"
+            >
+                <div className="floating-cart-top">
+                  <span>
+                    <ShoppingBag aria-hidden="true" size={16} />
+                    Košík
+                  </span>
+                  <button
+                    aria-label="Zavřít košík"
+                    className="icon-button"
+                    type="button"
+                    onClick={() => setIsCartOpen(false)}
+                  >
+                    <X aria-hidden="true" size={18} />
+                  </button>
+                </div>
+                <strong className="cart-count-line">{cartCount} položek</strong>
+                {items.length ? (
+                  <>
+                    <ul>
+                      {items.map((item) => (
+                        <li key={item.id}>
+                          <div>
+                            <strong>{item.title}</strong>
+                            <span>
+                              {item.quantity}x
+                              {item.price ? ` · ${item.price}` : ""}
+                            </span>
+                          </div>
+                          <button
+                            aria-label={`Odebrat ${item.title}`}
+                            className="icon-button"
+                            type="button"
+                            onClick={() => value.removeItem(item.id)}
+                          >
+                            <Trash2 aria-hidden="true" size={15} strokeWidth={2.4} />
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="cart-summary">
+                      <span>Mezisoučet</span>
+                      <strong>{subtotal ? formatCzk(subtotal) : "Domluvou"}</strong>
+                    </div>
+                    <div className="floating-cart-actions">
+                      <Link
+                        className="button button-small button-primary"
+                        href="/kontakt"
+                        onClick={() => setIsCartOpen(false)}
+                      >
+                        Dokončit domluvou
+                      </Link>
+                      <button className="text-button" type="button" onClick={value.clearCart}>
+                        <Trash2 aria-hidden="true" size={15} strokeWidth={2.4} />
+                        Vyprázdnit
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <p>Košík je zatím prázdný. Přidejte kurz nebo e-shop materiál.</p>
+                )}
+            </motion.aside>
+          ) : null}
+        </AnimatePresence>
 
         <footer className="site-footer">
           <div>

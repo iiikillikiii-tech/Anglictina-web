@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { Camera, Mail, MapPin, Phone } from "lucide-react";
+import { ContactForm } from "../components/ContactForm";
+import { RevealSection } from "../components/RevealSection";
 import { contactInfo, rules } from "../data";
 
 export default function ContactPage() {
@@ -19,19 +22,26 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="section contact-grid">
+      <RevealSection className="section contact-grid">
         <div className="contact-card">
           <p className="eyebrow">Ozvěte se</p>
           <h2>{contactInfo.name}</h2>
           <div className="contact-actions">
             <a className="button button-primary" href={contactInfo.phoneHref}>
+              <Phone aria-hidden="true" size={18} strokeWidth={2.4} />
               {contactInfo.phone}
             </a>
             <a className="button button-secondary" href={contactInfo.emailHref}>
+              <Mail aria-hidden="true" size={18} strokeWidth={2.4} />
               {contactInfo.email}
+            </a>
+            <a className="button button-secondary" href={contactInfo.instagramHref}>
+              <Camera aria-hidden="true" size={18} strokeWidth={2.4} />
+              {contactInfo.instagram}
             </a>
           </div>
           <address>
+            <MapPin aria-hidden="true" size={18} strokeWidth={2.4} />
             {contactInfo.address.map((line) => (
               <span key={line}>{line}</span>
             ))}
@@ -50,9 +60,17 @@ export default function ContactPage() {
             Porovnat kurzy
           </Link>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section rules-preview">
+      <RevealSection className="section contact-form-section">
+        <div className="section-heading">
+          <p className="eyebrow">Rychlá poptávka</p>
+          <h2>Vyberte službu a pošlete zprávu rovnou e-mailem.</h2>
+        </div>
+        <ContactForm />
+      </RevealSection>
+
+      <RevealSection className="section rules-preview">
         <div className="section-heading">
           <p className="eyebrow">Pravidla spolupráce</p>
           <h2>Stručně před první lekcí.</h2>
@@ -66,7 +84,7 @@ export default function ContactPage() {
             </article>
           ))}
         </div>
-      </section>
+      </RevealSection>
     </>
   );
 }

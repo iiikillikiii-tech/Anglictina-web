@@ -1,10 +1,12 @@
 export type Accent = "coral" | "mint" | "violet" | "amber" | "blue";
 
 export type Course = {
+  slug: string;
   title: string;
   eyebrow: string;
   hours: string;
   price: string;
+  priceCzk: number;
   description: string;
   features: string[];
   accent: Accent;
@@ -22,7 +24,10 @@ export type Product = {
   category: string;
   categorySlug: string;
   status: string;
+  price?: string;
+  priceCzk?: number;
   description: string;
+  includes: string[];
   accent: Accent;
 };
 
@@ -44,10 +49,12 @@ const courseFeatures = [
 
 export const courses: Course[] = [
   {
+    slug: "3x-tydne",
     title: "3x týdně",
     eyebrow: "Nejintenzivnější balíček",
     hours: "36 hodin / 3 měsíce",
     price: "18 000 Kč / 710 €",
+    priceCzk: 18000,
     description:
       "Tři online hodiny týdně pro studenty, kteří chtějí udělat rychlý a pravidelný posun.",
     features: [
@@ -58,10 +65,12 @@ export const courses: Course[] = [
     accent: "coral",
   },
   {
+    slug: "2x-tydne",
     title: "2x týdně",
     eyebrow: "Pravidelný režim",
     hours: "24 hodin / 3 měsíce",
     price: "12 000 Kč / 473 €",
+    priceCzk: 12000,
     description:
       "Dvě lekce týdně z pohodlí domova, ideální pro stabilní zlepšení bez dojíždění.",
     features: [
@@ -72,10 +81,12 @@ export const courses: Course[] = [
     accent: "mint",
   },
   {
+    slug: "maly-balicek",
     title: "Malý balíček",
     eyebrow: "Krátký start",
     hours: "8 hodin",
     price: "4 000 Kč / 165 €",
+    priceCzk: 4000,
     description:
       "Rychlý vstup do výuky, nastavení směru a první praktické materiály pro samostatné učení.",
     features: [
@@ -87,10 +98,30 @@ export const courses: Course[] = [
     accent: "violet",
   },
   {
+    slug: "maturita-balicek",
+    title: "Maturita balíček",
+    eyebrow: "Příprava ke zkoušce",
+    hours: "8 hodin",
+    price: "2 800 Kč",
+    priceCzk: 2800,
+    description:
+      "Krátký cílený blok pro studenty, kteří potřebují projít maturitní témata, psaní a typové úlohy.",
+    features: [
+      "online lekce",
+      "maturitní témata a strategie",
+      "procvičení písemné části",
+      "materiály v PDF",
+      "poznámky s chybami a doporučením další práce",
+    ],
+    accent: "blue",
+  },
+  {
+    slug: "stredni-balicek",
     title: "Střední balíček",
     eyebrow: "Vyvážená varianta",
     hours: "12 hodin",
     price: "6 000 Kč / 247 €",
+    priceCzk: 6000,
     description:
       "Dost prostoru na gramatiku, slovní zásobu i mluvení bez velkého závazku.",
     features: [
@@ -102,10 +133,12 @@ export const courses: Course[] = [
     accent: "amber",
   },
   {
+    slug: "velky-balicek",
     title: "Velký balíček",
     eyebrow: "Kompletní blok",
     hours: "24 hodin",
     price: "12 000 Kč / 494 €",
+    priceCzk: 12000,
     description:
       "Dlouhodobější spolupráce s jasným plánem, pravidelnou zpětnou vazbou a konverzací.",
     features: [
@@ -118,6 +151,11 @@ export const courses: Course[] = [
 ];
 
 export const productCategories: ProductCategory[] = [
+  {
+    slug: "kurzy",
+    label: "Kurzy",
+    description: "Online balíčky lekcí podle intenzity a cíle studenta.",
+  },
   {
     slug: "gramatika-cviceni",
     label: "Gramatika/Cvičení",
@@ -147,56 +185,181 @@ export const productCategories: ProductCategory[] = [
 
 export const products: Product[] = [
   {
-    title: "Gramatika a cvičení",
-    slug: "gramatika-a-cviceni",
-    category: "Gramatika/Cvičení",
-    categorySlug: "gramatika-cviceni",
-    status: "Materiály pro procvičování",
+    title: "3x TÝDEN balíček",
+    slug: "3x-tyden-balicek",
+    category: "Kurzy",
+    categorySlug: "kurzy",
+    status: "36 hodin / 3 měsíce",
+    price: "18 000 Kč",
+    priceCzk: 18000,
     description:
-      "Cvičení pro začátečníky i pokročilé, zaměřená na praktické používání gramatiky.",
-    accent: "violet",
-  },
-  {
-    title: "Slovíčka",
-    slug: "slovicka",
-    category: "Slovíčka",
-    categorySlug: "slovicka",
-    status: "Slovní zásoba",
-    description:
-      "Tematická slovíčka, fráze a podklady pro rychlejší zapamatování a opakování.",
-    accent: "mint",
-  },
-  {
-    title: "Maturita a Cambridge",
-    slug: "maturita-a-cambridge",
-    category: "Maturita&Cambridge",
-    categorySlug: "maturita-cambridge",
-    status: "Příprava ke zkouškám",
-    description:
-      "Podklady pro studenty, kteří se připravují na maturitu nebo cambridgeské zkoušky.",
+      "Intenzivní tříměsíční balíček se třemi online hodinami týdně přes Skype.",
+    includes: [
+      "36 online hodin",
+      "3 hodiny týdně",
+      "nahrávání hodin podle domluvy",
+      "slovíčka na mobil",
+      "materiály v PDF",
+      "fráze ze seriálu Přátelé",
+    ],
     accent: "coral",
   },
   {
-    title: "Cestování",
-    slug: "cestovani",
-    category: "Cestování",
-    categorySlug: "cestovani",
-    status: "V přípravě",
+    title: "2x TÝDEN balíček",
+    slug: "2x-tyden-balicek",
+    category: "Kurzy",
+    categorySlug: "kurzy",
+    status: "24 hodin / 3 měsíce",
+    price: "12 000 Kč",
+    priceCzk: 12000,
     description:
-      "Praktické fráze a situace pro letiště, hotel, restauraci, dopravu a běžnou komunikaci.",
+      "Pravidelný tříměsíční balíček se dvěma online hodinami týdně přes Skype.",
+    includes: [
+      "24 online hodin",
+      "2 hodiny týdně",
+      "nahrávání hodin podle domluvy",
+      "knížky podle úrovně",
+      "materiály v PDF",
+      "poznámky s chybami a slovíčky",
+    ],
+    accent: "mint",
+  },
+  {
+    title: "MALÝ balíček",
+    slug: "maly-balicek",
+    category: "Kurzy",
+    categorySlug: "kurzy",
+    status: "8 hodin",
+    price: "4 000 Kč",
+    priceCzk: 4000,
+    description:
+      "Krátký balíček pro rychlý start, nastavení cíle a první praktické materiály.",
+    includes: [
+      "8 online hodin",
+      "knížky podle úrovně",
+      "materiály v PDF",
+      "postup efektivního učení",
+      "poznámky s chybami a slovíčky",
+    ],
+    accent: "violet",
+  },
+  {
+    title: "MATURITA balíček (8 hodin)",
+    slug: "maturita-balicek-8-hodin",
+    category: "Kurzy",
+    categorySlug: "kurzy",
+    status: "8 hodin",
+    price: "2 800 Kč",
+    priceCzk: 2800,
+    description:
+      "Cílený online balíček pro studenty, kteří se připravují k maturitě z angličtiny.",
+    includes: [
+      "8 online hodin",
+      "maturitní témata",
+      "písemná část",
+      "zpětná vazba",
+      "doporučení další práce",
+    ],
+    accent: "blue",
+  },
+  {
+    title: "STŘEDNÍ balíček",
+    slug: "stredni-balicek",
+    category: "Kurzy",
+    categorySlug: "kurzy",
+    status: "12 hodin",
+    price: "6 000 Kč",
+    priceCzk: 6000,
+    description:
+      "Vyvážený balíček pro studenty, kteří chtějí kombinovat mluvení, gramatiku a slovní zásobu.",
+    includes: [
+      "12 online hodin",
+      "slovíčka na mobil",
+      "knížky podle úrovně",
+      "materiály v PDF",
+      "poznámky po lekci",
+    ],
     accent: "amber",
   },
   {
-    title: "Business angličtina",
-    slug: "business-anglictina",
-    category: "Business",
-    categorySlug: "business",
-    status: "V přípravě",
+    title: "VELKÝ balíček",
+    slug: "velky-balicek",
+    category: "Kurzy",
+    categorySlug: "kurzy",
+    status: "24 hodin",
+    price: "12 000 Kč",
+    priceCzk: 12000,
     description:
-      "Slovní zásoba a modelové situace pro meetingy, e-maily, prezentace a pracovní hovory.",
+      "Kompletní blok online výuky s pravidelnou zpětnou vazbou a konverzací.",
+    includes: [
+      "24 online hodin",
+      "nahrávání hodin podle domluvy",
+      "slovíčka na mobil",
+      "telefonická konverzace 2-3x týdně",
+      "materiály v PDF",
+      "fráze ze seriálu Přátelé",
+    ],
     accent: "blue",
   },
+  {
+    title: "Časy",
+    slug: "casy",
+    category: "Gramatika/Cvičení",
+    categorySlug: "gramatika-cviceni",
+    status: "Přehled gramatiky",
+    price: "100 Kč",
+    priceCzk: 100,
+    description:
+      "Přehled anglických časů pro studenty, kteří si chtějí udělat pořádek v základních pravidlech.",
+    includes: ["přehled časů", "stručné vysvětlení", "praktické příklady", "PDF ke stažení"],
+    accent: "violet",
+  },
+  {
+    title: "Časy - cvičení",
+    slug: "casy-cviceni",
+    category: "Gramatika/Cvičení",
+    categorySlug: "gramatika-cviceni",
+    status: "30 příkladů",
+    price: "50 Kč",
+    priceCzk: 50,
+    description:
+      "Sbírka cvičení na procvičení anglických časů. Hodí se pro studenty různého věku.",
+    includes: ["30 příkladů", "procvičení časů", "samostatná práce", "PDF materiál"],
+    accent: "mint",
+  },
+  {
+    title: "Present Simple - Cvičení",
+    slug: "present-simple-cviceni",
+    category: "Gramatika/Cvičení",
+    categorySlug: "gramatika-cviceni",
+    status: "Doplňovačky a aktivity",
+    price: "50 Kč",
+    priceCzk: 50,
+    description:
+      "Materiál na Present Simple s doplňovačkami, čtením s porozuměním a aktivitami pro psaní.",
+    includes: ["doplňovačky", "čtení s porozuměním", "psací aktivita", "procvičení Present Simple"],
+    accent: "amber",
+  },
+  {
+    title: "Maturita&Cambridge zkoušky - písemná část",
+    slug: "maturita-cambridge-pisemna-cast",
+    category: "Maturita&Cambridge",
+    categorySlug: "maturita-cambridge",
+    status: "Písemná část",
+    price: "200 Kč",
+    priceCzk: 200,
+    description:
+      "Sbírka pro písemnou část: článek, esej, formální i neformální dopis, recenze, zpráva a další útvary.",
+    includes: ["článek", "esej", "formální dopis", "neformální dopis", "recenze", "zpráva"],
+    accent: "coral",
+  },
 ];
+
+export const categoryEmptyStates: Record<string, string> = {
+  slovicka: "V přípravě - tematická slovní zásoba a fráze budou doplněné jako samostatné materiály.",
+  cestovani: "V přípravě - materiály pro letiště, hotel, restauraci, dopravu a běžné situace.",
+  business: "V přípravě - pracovní angličtina pro meetingy, e-maily, prezentace a hovory.",
+};
 
 export const rules = [
   {
@@ -228,12 +391,32 @@ export const reviews = [
   },
 ];
 
+export const skypeBenefits = [
+  "stačí mobil, tablet nebo počítač s připojením k internetu",
+  "všechno dostanete v PDF souborech, takže učebnice nejsou potřeba",
+  "zkušební lekce zdarma na 30 minut pro stanovení cíle",
+  "žádné dojíždění",
+  "flexibilita obou stran",
+  "možnost učit se odkudkoliv",
+];
+
+export const aboutStory = {
+  intro:
+    "Jmenuji se Filip a angličtinu učím 5 let. Učím studenty různých věkových kategorií a zkušenosti jsem sbíral v kurzech v Anglii i u nás v Česku.",
+  background:
+    "S angličtinou jsem začal od dětství, ale dlouho mi školní výuka nevyhovovala. Postupně jsem si našel vlastní cestu: reálná angličtina, jazykové školy a soukromí lektoři v online výuce.",
+  approach:
+    "Výuku vedu tak, aby jazyk nebyl jen biflování pouček. Hledám jednoduché způsoby, jak angličtinu vstřebat přirozeně, a ke každému studentovi přistupuji podle jeho osobních potřeb.",
+};
+
 export const contactInfo = {
   name: "Filip Trubelík",
   phone: "+420 602 515 652",
   phoneHref: "tel:+420602515652",
   email: "filip.trubelik@seznam.cz",
   emailHref: "mailto:filip.trubelik@seznam.cz",
+  instagram: "Instagram",
+  instagramHref: "https://www.instagram.com/",
   address: ["Naskové 1318/1g", "15000 Praha-Košíře"],
   ico: "09550321",
 };

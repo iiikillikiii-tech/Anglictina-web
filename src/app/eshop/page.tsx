@@ -1,4 +1,5 @@
 import { ProductGrid } from "../components/ProductGrid";
+import { RevealSection } from "../components/RevealSection";
 
 export default function ShopPage() {
   return (
@@ -18,9 +19,9 @@ export default function ShopPage() {
         </div>
       </section>
 
-      <section className="section shop-section">
+      <RevealSection className="section shop-section">
         <ProductGrid />
-      </section>
+      </RevealSection>
     </>
   );
 }

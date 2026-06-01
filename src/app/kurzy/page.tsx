@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CourseCards } from "../components/CourseCards";
-import { rules } from "../data";
+import { RevealSection } from "../components/RevealSection";
+import { rules, skypeBenefits } from "../data";
 
 export default function CoursesPage() {
   return (
@@ -20,15 +21,15 @@ export default function CoursesPage() {
         </div>
       </section>
 
-      <section className="section">
+      <RevealSection className="section">
         <div className="section-heading section-heading-wide">
           <p className="eyebrow">Ceník</p>
           <h2>Vyberte balíček podle intenzity výuky.</h2>
         </div>
         <CourseCards />
-      </section>
+      </RevealSection>
 
-      <section className="section split-section">
+      <RevealSection className="section split-section">
         <div className="image-strip image-strip-notes" aria-label="Poznámky z angličtiny" />
         <div>
           <p className="eyebrow">Co je v ceně</p>
@@ -41,9 +42,24 @@ export default function CoursesPage() {
             Domluvit kurz
           </Link>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section rules-preview">
+      <RevealSection className="section benefits-section">
+        <div className="section-heading">
+          <p className="eyebrow">Výuka pomocí Skypu</p>
+          <h2>Z pohodlí domova, bez učebnic a bez dojíždění.</h2>
+        </div>
+        <div className="benefit-grid">
+          {skypeBenefits.map((benefit) => (
+            <article key={benefit}>
+              <span aria-hidden="true">✓</span>
+              <h3>{benefit}</h3>
+            </article>
+          ))}
+        </div>
+      </RevealSection>
+
+      <RevealSection className="section rules-preview">
         <div className="section-heading">
           <p className="eyebrow">Pravidla</p>
           <h2>Jednoduché podmínky, aby výuka fungovala.</h2>
@@ -57,7 +73,7 @@ export default function CoursesPage() {
             </article>
           ))}
         </div>
-      </section>
+      </RevealSection>
     </>
   );
 }
