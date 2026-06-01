@@ -3,7 +3,11 @@ import {
   ArrowRight,
   BookOpenCheck,
   CalendarCheck,
+  CheckCircle2,
   Clock3,
+  FileText,
+  GraduationCap,
+  Headphones,
   MessageCircle,
   Video,
 } from "lucide-react";
@@ -17,11 +21,11 @@ export default function Home() {
       <section className="page-hero home-hero">
         <div className="hero-copy">
           <p className="hello-line">Online angličtina s jasným plánem</p>
-          <h1>Jsem Filip. Pomáhám studentům konečně rozumět angličtině.</h1>
+          <h1>Angličtina, která má systém, rytmus a další krok.</h1>
           <p>
-            Online lekce, PDF materiály a jasný systém pro studenty, kteří chtějí
-            mluvit přirozeněji, připravit se na zkoušky nebo si udělat pořádek v
-            gramatice.
+            Lekce, PDF materiály a e-shop podklady v jednom přehledném směru pro
+            studenty, kteří chtějí mluvit přirozeněji, připravit se na zkoušky
+            nebo si konečně srovnat gramatiku.
           </p>
           <div className="hero-actions">
             <Link className="button button-primary" href="/kurzy">
@@ -49,33 +53,72 @@ export default function Home() {
           </div>
         </div>
 
-        <aside className="subscribe-panel" aria-label="Domluva výuky">
-          <div className="subscribe-image">
-            <div className="lesson-card lesson-card-top">
-              <Video aria-hidden="true" size={18} />
-              <span>Online lekce</span>
+        <aside className="subscribe-panel authkit-preview" aria-label="Náhled systému výuky">
+          <div className="preview-shell">
+            <div className="preview-card preview-card-main">
+              <div className="preview-card-top">
+                <span className="preview-logo" aria-hidden="true">
+                  A
+                </span>
+                <strong>Angličtina s přehledem</strong>
+              </div>
+              <h2>Najděte svůj plán výuky</h2>
+              <div className="preview-field">
+                <span>Cíl studenta</span>
+                <strong>mluvit jistěji do 3 měsíců</strong>
+              </div>
+              <div className="preview-field">
+                <span>Doporučený režim</span>
+                <strong>2-3 lekce týdně + PDF materiály</strong>
+              </div>
+              <Link className="button button-primary" href="/kontakt">
+                Poslat poptávku
+                <ArrowRight aria-hidden="true" size={18} strokeWidth={2.5} />
+              </Link>
+              <div className="preview-status">
+                <CheckCircle2 aria-hidden="true" size={17} />
+                <span>Zkušební sladění cíle zdarma</span>
+              </div>
             </div>
-            <div className="lesson-card lesson-card-bottom">
-              <CalendarCheck aria-hidden="true" size={18} />
-              <span>Jasný další krok</span>
+
+            <div className="preview-stack">
+              <article className="preview-card preview-card-small">
+                <Video aria-hidden="true" size={19} />
+                <div>
+                  <strong>Online lekce</strong>
+                  <span>Skype, poznámky, nahrávání dle domluvy</span>
+                </div>
+              </article>
+              <article className="preview-card preview-card-small">
+                <FileText aria-hidden="true" size={19} />
+                <div>
+                  <strong>PDF materiály</strong>
+                  <span>gramatika, slovíčka, zkouškové podklady</span>
+                </div>
+              </article>
+              <article className="preview-card preview-card-small preview-card-accent">
+                <GraduationCap aria-hidden="true" size={19} />
+                <div>
+                  <strong>Plán pokroku</strong>
+                  <span>cíl, úroveň, kurz, další krok</span>
+                </div>
+              </article>
             </div>
           </div>
-          <div className="subscribe-copy">
-            <p className="panel-kicker">Domluvit výuku</p>
-            <h2>Začněte krátkou zprávou.</h2>
-            <p>
-              Napište, s čím potřebujete pomoct. Společně vybereme balíček,
-              úroveň a nejbližší vhodný termín.
-            </p>
-            <Link className="button button-primary" href="/kontakt">
-              Přejít na kontakt
-              <ArrowRight aria-hidden="true" size={18} strokeWidth={2.5} />
-            </Link>
-            <div className="mini-proof">
-              <BookOpenCheck aria-hidden="true" size={18} />
-              <strong>3 kroky</strong>
-              <span>cíl, úroveň, vhodný kurz</span>
-            </div>
+
+          <div className="preview-rail" aria-label="Součásti výuky">
+            <span>
+              <BookOpenCheck aria-hidden="true" size={16} />
+              vysvětlení
+            </span>
+            <span>
+              <Headphones aria-hidden="true" size={16} />
+              mluvení
+            </span>
+            <span>
+              <CalendarCheck aria-hidden="true" size={16} />
+              pravidelnost
+            </span>
           </div>
         </aside>
       </section>
