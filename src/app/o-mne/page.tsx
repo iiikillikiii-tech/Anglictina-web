@@ -8,7 +8,7 @@ export default function AboutPage() {
       <section className="page-hero compact-hero">
         <div className="hero-copy">
           <p className="eyebrow">O mně</p>
-          <h1>Jsem Filip a angličtinu učím tak, aby dávala smysl v praxi.</h1>
+          <h1>Pomáhám studentům pochopit angličtinu bez zbytečného stresu.</h1>
           <p>{aboutStory.intro}</p>
         </div>
         <div className="portrait-panel portrait-panel-small" aria-label="Lektor angličtiny" />
@@ -17,7 +17,7 @@ export default function AboutPage() {
       <RevealSection className="section story-grid">
         <article>
           <p className="eyebrow">Přístup</p>
-          <h2>Výuka vychází z reálné angličtiny a konkrétních potřeb studenta.</h2>
+          <h2>Angličtina nemusí být složitá, chaotická ani nudná.</h2>
           <p>{aboutStory.background}</p>
           <p>{aboutStory.approach}</p>
         </article>
@@ -27,6 +27,8 @@ export default function AboutPage() {
             <li>mluvení a porozumění v běžných situacích,</li>
             <li>gramatiku vysvětlenou na konkrétních příkladech,</li>
             <li>slovní zásobu podle cíle studenta,</li>
+            <li>přípravu na testy, maturitu a Cambridge zkoušky,</li>
+            <li>praktickou angličtinu na cestování a běžný život,</li>
             <li>materiály a poznámky pro domácí práci.</li>
           </ul>
         </article>
@@ -39,7 +41,7 @@ export default function AboutPage() {
         </div>
         <div className="profile-facts">
           <article>
-            <strong>5 let</strong>
+            <strong>7 let</strong>
             <span>praxe s výukou angličtiny</span>
           </article>
           <article>
@@ -48,7 +50,7 @@ export default function AboutPage() {
           </article>
           <article>
             <strong>online</strong>
-            <span>výuka přes Skype z pohodlí domova</span>
+            <span>výuka přes Microsoft Teams z pohodlí domova</span>
           </article>
         </div>
       </RevealSection>
@@ -59,8 +61,8 @@ export default function AboutPage() {
           <p className="eyebrow">Online forma</p>
           <h2>Stačí počítač, tablet nebo telefon a klid na lekci.</h2>
           <p>
-            Výuka probíhá přes Skype. Předem je jasné, co se bude probírat,
-            po lekci student ví, co opakovat a jak pokračovat.
+            Výuka probíhá přes Microsoft Teams. Předem je jasné, co se bude probírat,
+            a po lekci student ví, kde dělá chyby, co si zopakovat a jak pokračovat.
           </p>
           <Link className="button button-primary" href="/kontakt">
             Domluvit lekci

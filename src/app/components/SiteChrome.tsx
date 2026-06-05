@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, ShoppingBag, Sparkles, Trash2, X } from "lucide-react";
+import { ChevronDown, Menu, Moon, ShoppingBag, Sparkles, Sun, Trash2, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   createContext,
@@ -35,7 +35,9 @@ type CartItem = CartItemInput & {
 };
 
 const CART_KEY = "anglictina-cart-v1";
+const THEME_KEY = "anglictina-theme-v1";
 const CartContext = createContext<CartContextValue | null>(null);
+type ThemeMode = "light" | "dark";
 
 const formatCzk = (value: number) =>
   new Intl.NumberFormat("cs-CZ", {
@@ -122,6 +124,13 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       window.localStorage.setItem(CART_KEY, JSON.stringify(items));
     }
   }, [items]);
+
+  const toggleTheme = () => {
+    const currentTheme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+    const nextTheme: ThemeMode = currentTheme === "light" ? "dark" : "light";
+    document.documentElement.dataset.theme = nextTheme;
+    window.localStorage.setItem(THEME_KEY, nextTheme);
+  };
 
   const value = useMemo<CartContextValue>(
     () => ({
@@ -214,6 +223,15 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
           <div className="nav-actions">
             <button
+              className="theme-toggle"
+              type="button"
+              aria-label="Přepnout světlý a tmavý režim"
+              onClick={toggleTheme}
+            >
+              <Moon className="theme-icon theme-icon-moon" aria-hidden="true" size={17} strokeWidth={2.4} />
+              <Sun className="theme-icon theme-icon-sun" aria-hidden="true" size={17} strokeWidth={2.4} />
+            </button>
+            <button
               className="cart-pill"
               type="button"
               aria-label={`Otevřít košík: ${cartCount} položek`}
@@ -268,6 +286,9 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                     ) : null}
                   </div>
                 ))}
+                <button className="mobile-menu-link mobile-theme-action" type="button" onClick={toggleTheme}>
+                  Přepnout světlý/tmavý režim
+                </button>
               </motion.nav>
             ) : null}
           </AnimatePresence>
@@ -275,7 +296,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
         <div className="site-announcement">
           <Sparkles aria-hidden="true" size={16} />
-          <span>Online lekce, PDF materiály a přehledný plán učení bez zbytečné teorie.</span>
+          <span>Online lekce přes Microsoft Teams, PDF materiály a přehledný plán učení.</span>
         </div>
 
         <nav className="shop-shortcuts" aria-label="Rychlé odkazy e-shopu">

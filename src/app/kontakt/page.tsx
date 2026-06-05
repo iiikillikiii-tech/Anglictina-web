@@ -10,10 +10,10 @@ export default function ContactPage() {
       <section className="page-hero compact-hero">
         <div className="hero-copy">
           <p className="eyebrow">Kontakt</p>
-          <h1>Domluvte si kurz nebo zkušební lekci.</h1>
+          <h1>Domluvte si kurz nebo se zeptejte, kde začít.</h1>
           <p>
-            Napište nebo zavolejte. Společně vyberete vhodné tempo, úroveň a typ
-            materiálů podle toho, co v angličtině potřebujete zlepšit.
+            Napište mi, jaká je vaše úroveň angličtiny, s čím potřebujete pomoct
+            a jaký máte cíl. Podle toho doporučím vhodný kurz nebo balíček.
           </p>
         </div>
         <div className="hero-note accent-coral">
@@ -51,14 +51,36 @@ export default function ContactPage() {
 
         <div className="contact-card contact-card-muted">
           <p className="eyebrow">Před domluvou</p>
-          <h2>Hodí se vědět, jak často chcete studovat.</h2>
+          <h2>Stačí pár vět. Nemusíte mít všechno promyšlené.</h2>
           <p>
-            Pokud si nejste jistí, začněte kratším balíčkem. Po prvních lekcích se dá
-            tempo upravit podle času, cíle a aktuální úrovně.
+            Hodí se napsat, jestli jde o výuku pro vás, dítě nebo studenta, jaká je
+            přibližná úroveň, co je největší problém a kdy by se vám lekce časově hodily.
           </p>
           <Link className="button button-secondary" href="/kurzy">
             Porovnat kurzy
           </Link>
+        </div>
+      </RevealSection>
+
+      <RevealSection className="section contact-help-section depth-section">
+        <div className="section-heading section-heading-wide">
+          <p className="eyebrow">S čím vám můžu pomoct?</p>
+          <h2>Nejčastější důvody, proč se lidé ozývají.</h2>
+        </div>
+        <div className="contact-help-grid">
+          {[
+            "začít s online lekcemi angličtiny",
+            "vybrat správný kurz nebo balíček",
+            "pochopit gramatiku a časy",
+            "připravit se na test, maturitu nebo zkoušku",
+            "rozmluvit se bez stresu",
+            "učit se přes Microsoft Teams z domova",
+          ].map((item) => (
+            <article key={item}>
+              <span aria-hidden="true">✓</span>
+              <h3>{item}</h3>
+            </article>
+          ))}
         </div>
       </RevealSection>
 

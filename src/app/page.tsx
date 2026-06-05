@@ -6,30 +6,79 @@ import {
   CheckCircle2,
   Clock3,
   FileText,
-  GraduationCap,
   Headphones,
   Layers3,
-  ListChecks,
   MessageCircle,
+  PlayCircle,
   ShoppingBag,
+  Sparkles,
   Target,
   Video,
 } from "lucide-react";
 import { CourseCards } from "./components/CourseCards";
+import { LearningStudioScene } from "./components/LearningStudioScene";
 import { RevealSection } from "./components/RevealSection";
-import { productCategories, reviews, skypeBenefits } from "./data";
+import { audienceGroups, faqItems, onlineBenefits, productCategories, reviews } from "./data";
+
+const heroStats = [
+  ["1:1", "individuální vedení"],
+  ["36 h", "intenzivní kurz"],
+  ["PDF", "materiály po lekci"],
+  ["30 min", "úvodní sladění"],
+];
+
+const systemSteps = [
+  {
+    icon: Target,
+    label: "01",
+    title: "Cíl a úroveň",
+    text: "Na začátku se určí, jestli řešíte mluvení, zkoušku, práci, cestování nebo srovnání základů.",
+  },
+  {
+    icon: CalendarCheck,
+    label: "02",
+    title: "Rytmus lekcí",
+    text: "Balíček nastaví tempo, termíny a konkrétní domácí práci mezi online setkáními.",
+  },
+  {
+    icon: BookOpenCheck,
+    label: "03",
+    title: "Výstupy po hodině",
+    text: "Student odchází s poznámkami, slovíčky, opravami chyb a dalším krokem v PDF.",
+  },
+];
+
+const studioFeatures = [
+  {
+    icon: Video,
+    title: "Online výuka",
+    text: "Microsoft Teams lekce bez dojíždění, s materiály připravenými před hodinou.",
+  },
+  {
+    icon: FileText,
+    title: "Digitální materiály",
+    text: "Gramatika, cvičení, slovíčka, maturita, Cambridge i business témata.",
+  },
+  {
+    icon: Headphones,
+    title: "Mluvení v praxi",
+    text: "Konverzace, telefonické fráze a reálné situace podle cíle studenta.",
+  },
+];
 
 export default function Home() {
   return (
     <>
-      <section className="page-hero home-hero">
-        <div className="hero-copy">
-          <p className="hello-line">Online angličtina s jasným plánem</p>
-          <h1>Angličtina, která má systém, rytmus a další krok.</h1>
+      <section className="cinematic-hero" aria-labelledby="hero-title">
+        <div className="cinematic-hero-scene">
+          <LearningStudioScene />
+        </div>
+        <div className="cinematic-hero-copy">
+          <p className="hello-line">Premium online English studio</p>
+          <h1 id="hero-title">Angličtina s přehledem z pohodlí domova.</h1>
           <p>
-            Lekce, PDF materiály a e-shop podklady v jednom přehledném směru pro
-            studenty, kteří chtějí mluvit přirozeněji, připravit se na zkoušky
-            nebo si konečně srovnat gramatiku.
+            Pomůžu vám pochopit gramatiku jednoduše, rozmluvit se bez stresu a učit se
+            angličtinu prakticky, krok za krokem.
           </p>
           <div className="hero-chip-row" aria-label="Oblasti výuky">
             <span>Maturita</span>
@@ -48,292 +97,205 @@ export default function Home() {
               Domluvit lekci
             </Link>
           </div>
-          <div className="hero-command" aria-label="Struktura spolupráce">
+        </div>
+        <div className="cinematic-hero-panel" aria-label="Souhrn výukového systému">
+          <div className="hero-command">
             <span>student-plan</span>
-            <strong>cíl · úroveň · kurz · materiály</strong>
+            <strong>cíl · úroveň · kurz · materiály · další krok</strong>
           </div>
-          <div className="hero-metrics" aria-label="Výhody výuky">
-            <div>
-              <strong>1:1</strong>
-              <span>individuální tempo</span>
-            </div>
-            <div>
-              <strong>6</strong>
-              <span>kurzových balíčků</span>
-            </div>
-            <div>
-              <strong>PDF</strong>
-              <span>materiály po lekci</span>
-            </div>
-            <div>
-              <strong>6</strong>
-              <span>kategorií e-shopu</span>
-            </div>
-            <div>
-              <strong>30 min</strong>
-              <span>úvodní sladění</span>
-            </div>
-            <div>
-              <strong>3</strong>
-              <span>cíl, úroveň, plán</span>
-            </div>
+          <div className="hero-metrics">
+            {heroStats.map(([value, label]) => (
+              <div key={label}>
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </div>
+            ))}
           </div>
         </div>
-
-        <aside className="subscribe-panel authkit-preview" aria-label="Náhled systému výuky">
-          <div className="preview-shell">
-            <div className="preview-card preview-card-main">
-              <div className="preview-card-top">
-                <span className="preview-logo" aria-hidden="true">
-                  A
-                </span>
-                <strong>Angličtina s přehledem</strong>
-              </div>
-              <h2>Najděte svůj plán výuky</h2>
-              <div className="preview-field">
-                <span>Cíl studenta</span>
-                <strong>mluvit jistěji do 3 měsíců</strong>
-              </div>
-              <div className="preview-field">
-                <span>Doporučený režim</span>
-                <strong>2-3 lekce týdně + PDF materiály</strong>
-              </div>
-              <Link className="button button-primary" href="/kontakt">
-                Poslat poptávku
-                <ArrowRight aria-hidden="true" size={18} strokeWidth={2.5} />
-              </Link>
-              <div className="preview-status">
-                <CheckCircle2 aria-hidden="true" size={17} />
-                <span>Zkušební sladění cíle zdarma</span>
-              </div>
-            </div>
-
-            <div className="preview-stack">
-              <article className="preview-card preview-card-small">
-                <Video aria-hidden="true" size={19} />
-                <div>
-                  <strong>Online lekce</strong>
-                  <span>Skype, poznámky, nahrávání dle domluvy</span>
-                </div>
-              </article>
-              <article className="preview-card preview-card-small">
-                <FileText aria-hidden="true" size={19} />
-                <div>
-                  <strong>PDF materiály</strong>
-                  <span>gramatika, slovíčka, zkouškové podklady</span>
-                </div>
-              </article>
-              <article className="preview-card preview-card-small preview-card-accent">
-                <GraduationCap aria-hidden="true" size={19} />
-                <div>
-                  <strong>Plán pokroku</strong>
-                  <span>cíl, úroveň, kurz, další krok</span>
-                </div>
-              </article>
-            </div>
-          </div>
-
-          <div className="preview-rail" aria-label="Součásti výuky">
-            <span>
-              <BookOpenCheck aria-hidden="true" size={16} />
-              vysvětlení
-            </span>
-            <span>
-              <Headphones aria-hidden="true" size={16} />
-              mluvení
-            </span>
-            <span>
-              <CalendarCheck aria-hidden="true" size={16} />
-              pravidelnost
-            </span>
-          </div>
-        </aside>
       </section>
 
-      <RevealSection className="section promo-band">
-        <div>
-          <p className="eyebrow">Limitovaná kapacita</p>
-          <h2>Nejrychlejší posun mají studenti s pravidelným režimem.</h2>
-          <p>
-            Původní nabídka staví hlavně na balíčcích 3x týdně a 2x týdně. Jsou
-            určené pro studenty, kteří chtějí angličtinu řešit systematicky z pohodlí domova.
-          </p>
-        </div>
-        <div className="promo-options">
-          <article>
-            <Clock3 aria-hidden="true" size={20} />
-            <strong>3x týdně</strong>
-            <span>36 hodin / 3 měsíce</span>
-          </article>
-          <article>
-            <Clock3 aria-hidden="true" size={20} />
-            <strong>2x týdně</strong>
-            <span>24 hodin / 3 měsíce</span>
-          </article>
-        </div>
-      </RevealSection>
-
-      <RevealSection className="section process-section">
+      <RevealSection className="section product-suite-section">
         <div className="section-heading section-heading-wide">
-          <p className="eyebrow">Učební systém</p>
-          <h2>Profesionální proces místo nahodilých lekcí.</h2>
+          <p className="eyebrow">Learning product</p>
+          <h2>Všechno, co už projekt nabízí, zabalené do jednoho prémiového studijního toku.</h2>
         </div>
-        <div className="process-grid">
-          <article>
-            <Target aria-hidden="true" size={22} strokeWidth={2.4} />
-            <span>01</span>
-            <h3>Diagnostika cíle</h3>
-            <p>Nejdřív se sladí úroveň, časové možnosti a důvod, proč angličtinu řešit.</p>
-          </article>
-          <article>
-            <CalendarCheck aria-hidden="true" size={22} strokeWidth={2.4} />
-            <span>02</span>
-            <h3>Pravidelný režim</h3>
-            <p>Student má jasný rytmus lekcí, materiálů a opakování mezi hodinami.</p>
-          </article>
-          <article>
-            <ListChecks aria-hidden="true" size={22} strokeWidth={2.4} />
-            <span>03</span>
-            <h3>Viditelný posun</h3>
-            <p>Po každé lekci zůstává konkrétní výstup: chyby, slovíčka a další úkol.</p>
-          </article>
-        </div>
-      </RevealSection>
-
-      <RevealSection className="section help-section">
-        <div className="ali-heading">
-          <p className="eyebrow">Jak vám můžu pomoct?</p>
-          <h2>
-            <span>Vyberte si</span>
-            <span>správnou cestu.</span>
-          </h2>
-        </div>
-        <div className="link-grid">
-          <Link className="feature-link" href="/kurzy">
+        <div className="suite-grid">
+          <Link className="suite-item suite-item-large" href="/kurzy">
             <span>
-              <Layers3 aria-hidden="true" size={18} />
+              <Layers3 aria-hidden="true" size={20} />
             </span>
-            <h3>Online kurzy</h3>
-            <p>Balíčky podle tempa studenta, včetně PDF materiálů a poznámek po lekci.</p>
+            <h3>Online kurzové balíčky</h3>
+            <p>Intenzita 3x týdně, pravidelný režim 2x týdně i menší startovací balíčky.</p>
             <strong>
-              Vybrat kurz
+              Porovnat kurzy
               <ArrowRight aria-hidden="true" size={17} />
             </strong>
           </Link>
-          <Link className="feature-link" href="/eshop">
+          <Link className="suite-item" href="/eshop">
             <span>
-              <ShoppingBag aria-hidden="true" size={18} />
+              <ShoppingBag aria-hidden="true" size={20} />
             </span>
             <h3>E-shop materiálů</h3>
-            <p>Gramatika, slovíčka, zkoušky, cestování i business angličtina podle kategorií.</p>
+            <p>Gramatika, slovíčka, zkoušky, cestování a pracovní angličtina.</p>
             <strong>
-              Prohlédnout materiály
+              Otevřít e-shop
               <ArrowRight aria-hidden="true" size={17} />
             </strong>
           </Link>
-          <Link className="feature-link" href="/o-mne">
+          <Link className="suite-item" href="/kontakt">
             <span>
-              <GraduationCap aria-hidden="true" size={18} />
+              <PlayCircle aria-hidden="true" size={20} />
             </span>
-            <h3>Individuální přístup</h3>
-            <p>Výuka stojí na srozumitelném vysvětlení, praxi a cílech konkrétního studenta.</p>
+            <h3>Úvodní sladění</h3>
+            <p>30 minut na cíl, úroveň a doporučený režim bez zbytečné teorie.</p>
             <strong>
-              O výuce
-              <ArrowRight aria-hidden="true" size={17} />
-            </strong>
-          </Link>
-          <Link className="feature-link" href="/kontakt">
-            <span>
-              <MessageCircle aria-hidden="true" size={18} />
-            </span>
-            <h3>Domluva lekce</h3>
-            <p>Krátké sladění cíle, úrovně a nejvhodnějšího balíčku pro další práci.</p>
-            <strong>
-              Kontaktovat
+              Poslat poptávku
               <ArrowRight aria-hidden="true" size={17} />
             </strong>
           </Link>
         </div>
       </RevealSection>
 
-      <RevealSection className="section spotlight-section">
-        <div className="spotlight-image" aria-label="Online studium angličtiny" />
-        <div className="spotlight-copy">
-          <p className="eyebrow">Kurzy</p>
-          <h2>Výuka, která má rytmus i jasný další krok.</h2>
-          <p>
-            Všechny lekce probíhají online. Student dostává materiály, slovíčka,
-            opravené chyby a doporučení, jak pokračovat mezi hodinami.
-          </p>
-          <Link className="button button-secondary" href="/kurzy">
-            Všechny balíčky
-          </Link>
-        </div>
-      </RevealSection>
-
-      <RevealSection className="section benefits-section">
+      <RevealSection className="section audience-section depth-section">
         <div className="section-heading section-heading-wide">
-          <p className="eyebrow">Výuka pomocí Skypu</p>
-          <h2>Online forma zachovává osobní přístup a šetří čas.</h2>
+          <p className="eyebrow">Pro koho</p>
+          <h2>Začátečníci, studenti i dospělí mají jiný cíl. Lekce tomu odpovídají.</h2>
         </div>
-        <div className="benefit-grid">
-          {skypeBenefits.slice(0, 3).map((benefit) => (
-            <article key={benefit}>
-              <span aria-hidden="true">✓</span>
-              <h3>{benefit}</h3>
+        <div className="audience-grid">
+          {audienceGroups.map((group, index) => (
+            <article key={group.title} className="depth-card">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{group.title}</h3>
+              <p>{group.text}</p>
             </article>
           ))}
+        </div>
+      </RevealSection>
+
+      <RevealSection className="section studio-section">
+        <div className="studio-copy">
+          <p className="eyebrow">Výukový systém</p>
+          <h2>Filmový dojem venku, praktická práce uvnitř.</h2>
+          <p>
+            Výuka probíhá online přes Microsoft Teams. Před lekcí dostanete materiály
+            v digitální podobě, během hodiny procvičujeme gramatiku, slovní zásobu,
+            čtení, poslech i mluvení a po lekci víte, co se učit dál.
+          </p>
+          <Link className="button button-secondary" href="/o-mne">
+            O přístupu k výuce
+          </Link>
+        </div>
+        <div className="studio-feature-list">
+          {studioFeatures.map((feature) => {
+            const Icon = feature.icon;
+            return (
+              <article key={feature.title}>
+                <Icon aria-hidden="true" size={21} strokeWidth={2.4} />
+                <div>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.text}</p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </RevealSection>
+
+      <RevealSection className="section process-section cinematic-process">
+        <div className="section-heading section-heading-wide">
+          <p className="eyebrow">Od chaosu k plánu</p>
+          <h2>Student vždy ví, proč dělá další krok.</h2>
+        </div>
+        <div className="process-grid">
+          {systemSteps.map((step) => {
+            const Icon = step.icon;
+            return (
+              <article key={step.title}>
+                <Icon aria-hidden="true" size={22} strokeWidth={2.4} />
+                <span>{step.label}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </article>
+            );
+          })}
         </div>
       </RevealSection>
 
       <RevealSection className="section">
         <div className="section-heading section-heading-wide">
           <p className="eyebrow">Doporučený start</p>
-          <h2>Nejčastěji vybírané balíčky.</h2>
+          <h2>Nejčastěji vybírané balíčky pro rychlý posun.</h2>
         </div>
         <CourseCards compact />
       </RevealSection>
 
-      <RevealSection className="section creator-section">
-        <div className="creator-photo" aria-label="Lektor angličtiny" />
+      <RevealSection className="section material-showcase">
         <div>
-          <p className="hello-line">Hey, jsem Filip Trubelík</p>
-          <h2>Angličtinu učím tak, aby dávala smysl v praxi.</h2>
+          <p className="eyebrow">E-shop materiálů</p>
+          <h2>Materiály rozdělené podle cíle, ne podle složité školní teorie.</h2>
           <p>
-            Cílem není biflovat poučky. V lekcích pracujeme s tím, co student
-            reálně potřebuje: mluvení, porozumění, gramatika na příkladech,
-            slovní zásoba a opakování mezi hodinami.
+            Kategorie v e-shopu pomáhají vybrat správný podklad pro domácí práci, zkoušku,
+            cestování nebo pracovní situace.
           </p>
-          <Link className="button button-secondary" href="/o-mne">
-            Přečíst příběh
+          <Link className="button button-primary" href="/eshop">
+            Prohlédnout materiály
+            <ArrowRight aria-hidden="true" size={18} strokeWidth={2.5} />
           </Link>
         </div>
-      </RevealSection>
-
-      <RevealSection className="section resource-section">
-        <div className="section-heading section-heading-wide">
-          <p className="eyebrow">Materiály</p>
-          <h2>Populární kategorie v e-shopu.</h2>
-        </div>
-        <div className="category-card-grid">
+        <div className="material-orbit" aria-label="Kategorie e-shopu">
           {productCategories.map((category, index) => (
-            <Link className="category-card" href={`/eshop/${category.slug}`} key={category.slug}>
-              <span className={`resource-thumb resource-thumb-${category.slug}`} aria-hidden="true">
-                <span className="resource-tab">{String(index + 1).padStart(2, "0")}</span>
-              </span>
+            <Link
+              className={`material-pill material-pill-${index + 1}`}
+              href={`/eshop/${category.slug}`}
+              key={category.slug}
+            >
+              <span>{String(index + 1).padStart(2, "0")}</span>
               <strong>{category.label}</strong>
-              <span>{category.description}</span>
-              <em>Zobrazit</em>
             </Link>
           ))}
         </div>
       </RevealSection>
 
+      <RevealSection className="section benefits-section premium-benefits">
+        <div className="section-heading section-heading-wide">
+          <p className="eyebrow">Online forma</p>
+          <h2>Výuka přes Microsoft Teams drží osobní přístup a šetří čas.</h2>
+        </div>
+        <div className="benefit-grid">
+          {onlineBenefits.slice(0, 3).map((benefit) => (
+            <article key={benefit}>
+              <span aria-hidden="true">
+                <CheckCircle2 size={18} strokeWidth={2.7} />
+              </span>
+              <h3>{benefit}</h3>
+            </article>
+          ))}
+        </div>
+      </RevealSection>
+
+      <RevealSection className="section faq-preview-section depth-section">
+        <div className="section-heading section-heading-wide">
+          <p className="eyebrow">FAQ</p>
+          <h2>Nejčastější otázky před první lekcí.</h2>
+        </div>
+        <div className="faq-list faq-list-compact">
+          {faqItems.slice(0, 4).map((item) => (
+            <article key={item.question}>
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </article>
+          ))}
+        </div>
+        <Link className="button button-secondary" href="/faq">
+          Zobrazit všechny otázky
+        </Link>
+      </RevealSection>
+
       <RevealSection className="section review-section">
-        <div className="newsletter-band">
+        <div className="newsletter-band cinematic-review-band">
           <div>
             <p className="eyebrow">Recenze</p>
-            <h2>Výuka má být praktická, přirozená a použitelná.</h2>
+            <h2>Praktická angličtina má být použitelná hned po lekci.</h2>
           </div>
           <div className="review-grid">
             {reviews.map((review) => (
@@ -343,6 +305,22 @@ export default function Home() {
               </figure>
             ))}
           </div>
+        </div>
+      </RevealSection>
+
+      <RevealSection className="section final-cta-section">
+        <Sparkles aria-hidden="true" size={22} strokeWidth={2.4} />
+        <p className="eyebrow">Začněte přehledně</p>
+        <h2>Domluvte si směr výuky a nechte angličtinu konečně zapadnout do týdne.</h2>
+        <div className="hero-actions">
+          <Link className="button button-primary" href="/kontakt">
+            Domluvit lekci
+            <ArrowRight aria-hidden="true" size={18} strokeWidth={2.5} />
+          </Link>
+          <Link className="button button-secondary" href="/kurzy">
+            Zobrazit kurzy
+            <Clock3 aria-hidden="true" size={18} strokeWidth={2.4} />
+          </Link>
         </div>
       </RevealSection>
     </>

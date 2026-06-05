@@ -8,16 +8,33 @@ import { useCart } from "./SiteChrome";
 const serviceOptions = [
   "Online kurz 3x týdně",
   "Online kurz 2x týdně",
+  "Letní intenzivní kurz",
   "Malý / střední / velký balíček",
   "Maturita nebo Cambridge",
   "PDF materiály z e-shopu",
   "Nejsem si jistý/á",
 ];
 
+const studentOptions = ["pro mě", "pro dítě", "pro studenta", "pro někoho jiného"];
+
+const levelOptions = [
+  "úplný začátečník",
+  "začátečník",
+  "mírně pokročilý",
+  "pokročilejší",
+  "nevím",
+];
+
+const helpOptions = ["gramatika", "mluvení", "test", "maturita", "cestování", "jiné"];
+
 export function ContactForm() {
   const { items } = useCart();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [student, setStudent] = useState(studentOptions[0]);
+  const [level, setLevel] = useState(levelOptions[0]);
+  const [help, setHelp] = useState(helpOptions[0]);
   const [service, setService] = useState(serviceOptions[0]);
   const [message, setMessage] = useState("");
 
@@ -37,6 +54,10 @@ export function ContactForm() {
       [
         `Jméno: ${name || "-"}`,
         `E-mail: ${email || "-"}`,
+        `Telefon: ${phone || "-"}`,
+        `Pro koho je výuka: ${student}`,
+        `Přibližná úroveň: ${level}`,
+        `S čím potřebuji pomoct: ${help}`,
         `Služba: ${service}`,
         "",
         "Košík:",
@@ -66,6 +87,44 @@ export function ContactForm() {
         <label>
           <span>E-mail</span>
           <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} />
+        </label>
+      </div>
+      <div className="form-row">
+        <label>
+          <span>Telefon</span>
+          <input type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} />
+        </label>
+        <label>
+          <span>Pro koho je výuka?</span>
+          <select value={student} onChange={(event) => setStudent(event.target.value)}>
+            {studentOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <div className="form-row">
+        <label>
+          <span>Přibližná úroveň</span>
+          <select value={level} onChange={(event) => setLevel(event.target.value)}>
+            {levelOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>S čím potřebujete pomoct?</span>
+          <select value={help} onChange={(event) => setHelp(event.target.value)}>
+            {helpOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
         </label>
       </div>
       <label>
