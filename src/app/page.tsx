@@ -27,6 +27,17 @@ const heroStats = [
   ["30 min", "úvodní sladění"],
 ];
 
+const tickerItems = [
+  "Grammar without panic",
+  "Speaking practice",
+  "Maturita",
+  "Cambridge",
+  "Business English",
+  "PDF workbooks",
+  "Microsoft Teams",
+  "Confidence",
+];
+
 const systemSteps = [
   {
     icon: Target,
@@ -74,11 +85,11 @@ export default function Home() {
           <LearningStudioScene />
         </div>
         <div className="cinematic-hero-copy">
-          <p className="hello-line">Premium online English studio</p>
-          <h1 id="hero-title">Angličtina s přehledem z pohodlí domova.</h1>
+          <p className="hello-line">Online lektor angličtiny</p>
+          <h1 id="hero-title">Angličtina, která konečně dává smysl.</h1>
           <p>
-            Pomůžu vám pochopit gramatiku jednoduše, rozmluvit se bez stresu a učit se
-            angličtinu prakticky, krok za krokem.
+            Přátelský přístup, jasný plán a lekce přes Microsoft Teams. Gramatiku
+            rozmotáme jednoduše a mluvení dostane pravidelný trénink bez stresu.
           </p>
           <div className="hero-chip-row" aria-label="Oblasti výuky">
             <span>Maturita</span>
@@ -99,6 +110,10 @@ export default function Home() {
           </div>
         </div>
         <div className="cinematic-hero-panel" aria-label="Souhrn výukového systému">
+          <div className="mentor-cue-card">
+            <span>Hey, I&apos;m Filip.</span>
+            <strong>Ne memorování. Přehled, praxe a klid v hlavě.</strong>
+          </div>
           <div className="hero-command">
             <span>student-plan</span>
             <strong>cíl · úroveň · kurz · materiály · další krok</strong>
@@ -109,6 +124,13 @@ export default function Home() {
                 <strong>{value}</strong>
                 <span>{label}</span>
               </div>
+            ))}
+          </div>
+        </div>
+        <div className="hero-ticker" aria-label="Oblasti výuky a témata">
+          <div>
+            {[...tickerItems, ...tickerItems].map((item, index) => (
+              <span key={`${item}-${index}`}>{item}</span>
             ))}
           </div>
         </div>
@@ -175,7 +197,7 @@ export default function Home() {
       <RevealSection className="section studio-section">
         <div className="studio-copy">
           <p className="eyebrow">Výukový systém</p>
-          <h2>Filmový dojem venku, praktická práce uvnitř.</h2>
+          <h2>Vypadá to lehce. Uvnitř je přesný systém.</h2>
           <p>
             Výuka probíhá online přes Microsoft Teams. Před lekcí dostanete materiály
             v digitální podobě, během hodiny procvičujeme gramatiku, slovní zásobu,
@@ -198,6 +220,24 @@ export default function Home() {
               </article>
             );
           })}
+        </div>
+      </RevealSection>
+
+      <RevealSection className="section lesson-flow-section">
+        <div className="lesson-flow-card">
+          <span>01</span>
+          <h3>Před lekcí</h3>
+          <p>Materiály, cíl a konkrétní téma, aby se hodina nerozjela do chaosu.</p>
+        </div>
+        <div className="lesson-flow-card lesson-flow-card-hot">
+          <span>02</span>
+          <h3>Během lekce</h3>
+          <p>Krátké vysvětlení, hodně použití, opravy chyb a mluvení v reálných situacích.</p>
+        </div>
+        <div className="lesson-flow-card">
+          <span>03</span>
+          <h3>Po lekci</h3>
+          <p>PDF shrnutí, slovíčka, domácí miniúkol a další krok bez hádání.</p>
         </div>
       </RevealSection>
 
